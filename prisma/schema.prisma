@@ -11,5 +11,5 @@ model Roles {
   id          String   @unique @default(uuid())
   name        String
   description String
-  createAt    DateTime @default(now())
+  createdAt   DateTime @default(now())
 }
