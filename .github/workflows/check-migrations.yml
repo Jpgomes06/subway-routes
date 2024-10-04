@@ -11,13 +11,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Ensures all history is fetched
 
       - name: Fetch the main branch
         run: git fetch origin main
 
       - name: Check for deleted migration files
         run: |
-          git checkout ${{ github.head_ref }}  # Checkout the current PR branch
+          # Get the current branch from the Pull Request
+          CURRENT_BRANCH=${{ github.head_ref }}
+          git checkout $CURRENT_BRANCH  # Checkout the current PR branch
           DIFF_OUTPUT=$(git diff --name-status origin/main)
           echo "$DIFF_OUTPUT"  # Log the diff to see the changes
           
