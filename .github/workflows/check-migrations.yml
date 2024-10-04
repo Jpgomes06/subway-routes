@@ -22,7 +22,7 @@ jobs:
         shell: bash
         run: |
           DIFF_OUTPUT=$(git diff --name-status origin/main...HEAD)
-          echo "$DIFF_OUTPUT"  # Log do diff para ver as mudanças
+          echo "$DIFF_OUTPUT"  # Log do diff para ver as mudanças2
           
           if echo "$DIFF_OUTPUT" | grep -E "^D\s*prisma/migrations/"; then
             echo "Error: Deleting migration files is not allowed."
