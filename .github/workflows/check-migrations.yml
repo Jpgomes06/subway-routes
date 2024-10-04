@@ -12,9 +12,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Fetch the main branch
+        run: git fetch origin main
+
       - name: Check for deleted migration files
         run: |
-          if git diff --name-status origin/main...HEAD | grep -E "^D\s*prisma/migrations/"; then
+          git checkout ${{ github.head_ref }}  # Checkout the current PR branch
+          DIFF_OUTPUT=$(git diff --name-status origin/main)
+          echo "$DIFF_OUTPUT"  # Log the diff to see the changes
+          
+          if echo "$DIFF_OUTPUT" | grep -E "^D\s*prisma/migrations/"; then
             echo "Error: Deleting migration files is not allowed."
             exit 1
+          else
+            echo "No migration files were deleted."
           fi
