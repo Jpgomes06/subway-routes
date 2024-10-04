@@ -12,8 +12,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Fetch main branch
-        run: git fetch origin main
+      - name: Fetch all branches and history
+        run: git fetch --all
 
       - name: Display Git Diff
         run: git diff --name-status origin/main...HEAD
@@ -22,7 +22,7 @@ jobs:
         shell: bash
         run: |
           DIFF_OUTPUT=$(git diff --name-status origin/main...HEAD)
-          echo "$DIFF_OUTPUT"  # Log do diff para ver as mudanças2
+          echo "$DIFF_OUTPUT"  # Log do diff para ver as mudanças
           
           if echo "$DIFF_OUTPUT" | grep -E "^D\s*prisma/migrations/"; then
             echo "Error: Deleting migration files is not allowed."
