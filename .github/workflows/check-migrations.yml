@@ -14,7 +14,7 @@ jobs:
 
       - name: Check for deleted migration files
         run: |
-          if git diff --name-status origin/main...HEAD | grep -E "^D\s*migrations/"; then
+          if git diff --name-status origin/main...HEAD | grep -E "^D\s*prisma/migrations/"; then
             echo "Error: Deleting migration files is not allowed."
             exit 1
           fi
