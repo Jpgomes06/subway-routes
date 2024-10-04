@@ -12,16 +12,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Fetch all branches and history
-        run: git fetch --all
-
-      - name: Display Git Diff
-        run: git diff --name-status origin/main...HEAD
+      - name: Fetch the main branch
+        run: |
+          git fetch origin main
+          git checkout main
 
       - name: Check for deleted migration files
         shell: bash
         run: |
-          DIFF_OUTPUT=$(git diff --name-status origin/main...HEAD)
+          git checkout ${{ github.head_ref }}  # Checar a branch atual do PR
+          DIFF_OUTPUT=$(git diff --name-status origin/main)
           echo "$DIFF_OUTPUT"  # Log do diff para ver as mudanças
           
           if echo "$DIFF_OUTPUT" | grep -E "^D\s*prisma/migrations/"; then
