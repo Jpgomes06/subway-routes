@@ -1,8 +1,10 @@
 import { PrismaClient } from '@prisma/client';
-import { seedRoles } from './seed/roles';
+import { seedRoles } from './seed/roles-seed';
+import { seedManufacturer } from './seed/manufacturer-seed';
 
 async function main() {
     await seedRoles();
+    await seedManufacturer();
 }
 
 main()
