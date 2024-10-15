@@ -2,17 +2,17 @@
   "name": "subway-routes",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "main": ".src/server.ts",
   "dependencies": {
     "@prisma/client": "^5.19.1",
-    "express": "^4.19.2",
+    "express": "^4.21.1",
     "nodemon": "^3.1.4",
-    "pg": "^8.12.0",
-    "prisma": "^5.19.1"
+    "pg": "^8.12.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.ts",
+    "dev": "nodemon --exec tsx src/server.ts",
     "migrate": "npx prisma migrate deploy",
     "seed": "npx prisma db seed",
     "migrate-seed": "npm run migrate && npm run seed"
@@ -29,6 +29,9 @@
   "devDependencies": {
     "@snaplet/copycat": "^5.0.0",
     "@snaplet/seed": "^0.98.0",
-    "tsx": "^4.19.0"
+    "@types/express": "^5.0.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3"
   }
 }
