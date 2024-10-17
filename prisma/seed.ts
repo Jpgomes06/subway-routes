@@ -1,3 +1,4 @@
+// @ts-ignore
 import { PrismaClient } from '@prisma/client';
 import { seedRoles } from './seed/roles-seed';
 import { seedManufacturer } from './seed/manufacturer-seed';
